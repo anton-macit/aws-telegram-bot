@@ -21,7 +21,7 @@ We assume that our API Gateway receives only valid updates from Telegram. In thi
 Messages from one channel should be parsed one by one. To implement it, let's have the same MessageGroupId for all messages from all channels. As the ideal way, we should set MessageGroupId as the Telegram chat id.
 
 ```
-Action=SendMessage&MessageDeduplicationId=$input.path('$.update_id')&MessageBody=$util.base64Encode($input.body)&MessageGroupId=1
+Action=SendMessage&MessageGroupId=1&MessageDeduplicationId=$input.path('$.update_id')&MessageBody=$util.base64Encode($input.body)
 ```
 
 ### One more thing
