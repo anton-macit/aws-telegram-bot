@@ -10,7 +10,9 @@ To allow ongoing updates, we will save all incoming Webhook requests to AWS SQS.
 
 ### Around queue properties
 
-It's planned that one message should be processed not more than 20 seconds in total. Our consumer will receive 5 messages maximum as a batch request. Thereby every message will be processed after 100 seconds maximum. Let's have a visibility timeout for 2 minutes.
+It's planned that one message should be processed not more than 20 seconds in total. Our consumer will receive only one messages maximum as a batch request. Let's have a visibility timeout for 1 minutes.
+
+Unprocessable messages have to be skipped, it will be sent to dead-letter queue. This one should be monitored.
 
 It's not planned to guarantee to process all messages. If there are some troubles with processing - old messages could be dropped. Let's have a message retention period of 1 hour.
 
